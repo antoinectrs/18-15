@@ -31,7 +31,7 @@ var coordinates = [];
 function waitJSON() {
     // Set the OSRM server URL
     const serverUrl = 'https://router.project-osrm.org';
-    fetch('../data/lava_data.json')
+    fetch('./data/lava_data.json')
         .then(response => response.json())
         .then(data => {
             DATA = Object.values(data.dict);
