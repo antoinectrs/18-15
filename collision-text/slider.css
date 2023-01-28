@@ -1,0 +1,64 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "antique";
+  }
+  
+  html, body, #map {
+    height: 100%;
+    width: 100vw;
+  }
+  
+  #container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .slide-in {
+    transition: all 1.5s ease-in;
+  }
+  #parent {
+    position: relative;
+    width: 100vw;
+    /* padding-bottom: 10%; */
+    height: 90px;
+    border-bottom: 1px black solid;
+    /* background: red; */
+    overflow: hidden;
+  }
+  
+  #draggable {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    width: fit-content;
+    /* background: blue; */
+    padding-right: 1%;
+    padding-left: 1%;
+  
+  }
+  
+  #draggable:hover {
+    color: rgb(206, 206, 206);
+    cursor: col-resize;
+  }
+  
+  #time {
+    font-size: 4rem;
+    margin: 0;
+    text-decoration: none;
+  }
+  
+  #time::selection {
+    text-decoration: none;
+  }
+  
+  @font-face {
+    font-family: 'antique';
+    src: url('../font/AntiqueLegacy-Medium.otf');
+  }
+  @font-face {
+    font-family: 'antique-thin';
+    src: url('../font/Antique-Legacy-Thin.otf');
+  }

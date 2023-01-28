@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet-src.js" crossorigin=""></script>
+    <script src="turf.min.js" crossorigin=""></script>
+
+    <link rel="stylesheet" href="./slider.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="parent">
+            <div id="draggable">
+                <p class="" id="time">19:15</p>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+</body>
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+    }
+
+    #map {
+        width: 100%;
+        background: none;
+        height: 100%;
+    }
+
+    .myTooltip {
+        background: none;
+        border: none;
+        opacity: 1;
+        border-radius: 0;
+        box-shadow: none;
+        font-size: 15px;
+        margin: 0;
+        font-family: antique-thin;
+        padding: 0;
+        line-height: 15px;
+        text-transform: lowercase;
+        padding: 0;
+        pointer-events: auto;
+        cursor: pointer;
+    }
+
+
+    .myTooltip:hover {
+        color: red;
+    }
+</style>
+
+<script src="./script/slider.js"></script>
+<script src="./script/function.js"></script>
+<script src="./script/script.js"></script>
+<script src="./script/json.js"></script>
+
+</html>
