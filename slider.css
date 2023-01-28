@@ -58,3 +58,7 @@ body {
     font-family: 'antique';
     src: url('../font/AntiqueLegacy-Medium.otf');
   }
+  @font-face {
+    font-family: 'antique-thin';
+    src: url('../font/Antique-Legacy-Thin.otf');
+  }

@@ -6,10 +6,11 @@ function JSONload() {
     filteredUsers.forEach((user, index) => {
         if (user.length > 1 && uniqueUsers[index] !== "") {
             user.forEach(data => {
+                console.log(data);
                 // Extract the latlng value from the data object
                 const latlng = data.latlng;
                 // const point = turf.point([latlng.lng, latlng.lat], { "user": index + 1, "time": data.time });
-                const point = turf.point([latlng.lng, latlng.lat], { "user":  index + 1, "time": data.time });
+                const point = turf.point([latlng.lng, latlng.lat], { "user": data.user.replace(/\"/g, ""), "time": data.time });
                 activePoints.features.push(point);
             });
         }
@@ -140,8 +141,9 @@ function hideOverlappingTooltips() {
 }
 
 function onEachFeature(feature, layer) {
+    console.log(feature);
     const toName = feature.properties.time.toString() + " myTooltip";
-    layer.bindTooltip(feature.properties.time.toString(), {
+    layer.bindTooltip(feature.properties.user.toString(), {
         permanent: true,
         className: toName,
     });
