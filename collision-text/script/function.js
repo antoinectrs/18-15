@@ -1,20 +1,25 @@
-function JSONload() {
+
+function foldData(){
     filteredData = DATA.filter(d => bounds.contains(d.latlng));
     uniqueUsers = getUniqueUsers(filteredData);
-    const filteredUsers = uniqueUsers.map(filterUser);
+     filteredUsers = uniqueUsers.map(filterUser);
     activePoints = turf.featureCollection([]);
+    // console.log(uniqueUsers);
+}
+function JSONload() {
     filteredUsers.forEach((user, index) => {
         if (user.length > 1 && uniqueUsers[index] !== "") {
             user.forEach(data => {
-                console.log(data);
                 // Extract the latlng value from the data object
                 const latlng = data.latlng;
                 // const point = turf.point([latlng.lng, latlng.lat], { "user": index + 1, "time": data.time });
-                const point = turf.point([latlng.lng, latlng.lat], { "user": data.user.replace(/\"/g, ""), "time": data.time });
+                const point = turf.point([latlng.lng, latlng.lat], { "id":index,"user": data.user.replace(/\"/g, ""), "time": data.time });
                 activePoints.features.push(point);
             });
         }
     });
+
+    
     turf.featureEach(activePoints, function (currentFeature, featureIndex) {
         currentFeature.id = featureIndex;
     });
@@ -26,27 +31,57 @@ function JSONload() {
                 })
             });
         },
-        onEachFeature: onEachFeature
+        onEachFeature: onEachFeature,
+        onEachLayer: onEachFeature
     }).addTo(map);
+   
+    // console.log(geojson);
     hideOverlappingTooltips();
+    toolBand= document.querySelectorAll('.myTooltip');
+    // $(".myTooltip").click(function() {
+    //     const target = this.classList[1];
+    //     const groupElements = $("." + target);
+    //     if (groupElements.hasClass("hidden")) {
+    //         groupElements.removeClass("hidden");
+    //     } else {
+    //         groupElements.addClass("hidden");
+    //     }
+    // });
+   
+    let target ;
+    $(".myTooltip").click(function() {
+         target = this.classList[1];
+        $('.myTooltip').not('.' + target).css("opacity", "0.1");
+        $('.' + target).css("opacity", "1");
+    });
+    
+    $("#map").on("click", function(event) {
+        if (event.target.className !== "myTooltip") {
+            if(target==undefined){
+                $('.myTooltip').not('.' + target).css("opacity", "1");
+                // $('.' + target).css("opacity", "1");
+            }
+            target = undefined;
+        }
+    });
+    
+    
+  
 }
 
 function setUpBoundaries(dist) {
     const center = L.latLng(46.52045, 6.6439);
-
     // Convert 1000 meters to degrees of latitude and longitude
     const latMetersPerDegree = 111319.5; // Approximation at the equator
     const lngMetersPerDegree = latMetersPerDegree * Math.cos(center.lat * Math.PI / 180);
     const halfSideLength = dist / 2;
     const halfSideInLat = halfSideLength / latMetersPerDegree;
     const halfSideInLng = halfSideLength / lngMetersPerDegree;
-
     // Define the bounds object with the calculated coordinates
     const bounds = L.latLngBounds(
         L.latLng(center.lat - halfSideInLat, center.lng - halfSideInLng),
         L.latLng(center.lat + halfSideInLat, center.lng + halfSideInLng)
     );
-
     // Add a rectangle to the map to visualize the bounds
     // L.rectangle(bounds, {
     //     fillColor: '#ffffff',
@@ -89,34 +124,6 @@ function updateMarkerVisibility(hours, minutes) {
 
     });
 }
-
-// function updateMarkerVisibility(hours, minutes) {
-//     let currentTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-//     console.log(activePoints,geojson);
-//     geojson.eachLayer(function (layer) {
-//         if (layer.feature.properties.time >= currentTime) {
-//             layer.setOpacity(0);
-//         } else {
-//             layer.setOpacity(1);
-//         }
-//     });
-// }
-// function updateMarkerVisibility(hours, minutes) {
-//     let currentTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-//     markersMap.forEach((markers, time) => {
-//         if (time >= currentTime) {
-//             markers.forEach(marker => {
-//                 marker.setOpacity(0);
-//             });
-//         } else {
-//             markers.forEach(marker => {
-//                 marker.setOpacity(1);
-//             });
-//         }
-//     });
-// }
-
-
 function overlap(rect1, rect2) {
     return (!(rect1.right < rect2.left ||
         rect1.left > rect2.right ||
@@ -141,25 +148,10 @@ function hideOverlappingTooltips() {
 }
 
 function onEachFeature(feature, layer) {
-    console.log(feature);
-    const toName = feature.properties.time.toString() + " myTooltip";
+    const toName = feature.properties.id +" "+ feature.properties.time.toString() + " myTooltip hide-o ";
     layer.bindTooltip(feature.properties.user.toString(), {
         permanent: true,
         className: toName,
     });
 }
-// function myPointLayer(points){
-//     L.geoJson(points, {
-//         pointToLayer: function (feature, latlng) {
-//             return L.marker(latlng, {
-//                 icon: L.divIcon({
-//                     className: 'myMarker',
-
-//                 })
-//             });
-//         },
-//         onEachFeature: onEachFeature
-//     })
-// }
-
 

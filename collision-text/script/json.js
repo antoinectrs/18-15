@@ -35,7 +35,10 @@ function waitJSON() {
         .then(response => response.json())
         .then(data => {
             DATA = Object.values(data.dict);
-            JSONload();
+            foldData();
+            textChange();
+            const load =JSONload();
+            toolBand= document.querySelectorAll('.myTooltip');
         });
 }
 // document.querySelector("#inside").addEventListener('click', unlock);

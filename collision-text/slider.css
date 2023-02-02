@@ -1,64 +1,236 @@
 body {
-    padding: 0;
-    margin: 0;
-    font-family: "antique";
-  }
-  
-  html, body, #map {
-    height: 100%;
-    width: 100vw;
-  }
-  
-  #container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  .slide-in {
-    transition: all 1.5s ease-in;
-  }
-  #parent {
-    position: relative;
-    width: 100vw;
-    /* padding-bottom: 10%; */
-    height: 90px;
-    border-bottom: 1px black solid;
-    /* background: red; */
-    overflow: hidden;
-  }
-  
-  #draggable {
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: pointer;
-    width: fit-content;
-    /* background: blue; */
-    padding-right: 1%;
-    padding-left: 1%;
-  
-  }
-  
-  #draggable:hover {
-    color: rgb(206, 206, 206);
-    cursor: col-resize;
-  }
-  
-  #time {
-    font-size: 4rem;
-    margin: 0;
-    text-decoration: none;
-  }
-  
-  #time::selection {
-    text-decoration: none;
-  }
-  
-  @font-face {
-    font-family: 'antique';
-    src: url('./font/AntiqueLegacy-Medium.otf');
-  }
-  @font-face {
-    font-family: 'antique-thin';
-    src: url('./font/Antique-Legacy-Thin.otf');
-  }
+  padding: 0;
+  margin: 0;
+  font-family: "antique";
+}
+
+html, body, #map {
+  height: 100%;
+  width: 100vw;
+
+}
+
+.hide {
+  display: none;
+}
+.hide-o{
+  opacity: 0.0;
+  pointer-events: none!important;
+}
+.leaflet-marker-icon.leaflet-interactive, .leaflet-image-layer.leaflet-interactive, .leaflet-pane > svg path.leaflet-interactive {
+  /* pointer-events: visiblePainted; */
+  pointer-events: none;
+}
+
+#footer-title {
+  text-align: center;
+  width: 100%;
+  font-variant-caps: all-small-caps;
+  position: absolute;
+  pointer-events: none;
+  bottom: 0;
+  z-index: 10000;
+  margin-bottom: 0;
+
+  line-height: 100%;
+
+  font-family: 'Antique Legacy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 50px;
+  text-transform: uppercase;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.t-link {
+  text-decoration: none;
+  color: black;
+}
+
+.t-link:hover {
+  color: #c1c1c1;
+}
+
+.center-txt {
+  text-align: center;
+}
+
+.hid {
+  overflow: hidden;
+}
+
+.one {
+  grid-column: 1/7;
+  grid-row: 1;
+}
+
+.two {
+  /* background: green; */
+  grid-column: 1 / 7;
+  grid-row: 4 /4;
+  height: 9vw;
+}
+
+.third {
+  grid-column: 2 / 6;
+  grid-row: 3 / 4;
+}
+
+.fourth {
+  /* background-color: #c1c1c1;; */
+  display: flex;
+  justify-content: center;
+  color:#c1c1c1 ;
+}
+
+.fourth p {
+  width: 50%;
+}
+.full-grid{
+  /* grid-column: 1 / 7;
+  grid-row: 1 / 5; */
+
+}
+
+.bottom-inside {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.bottom {
+  grid-row: 6 ;
+}
+
+.col-5 {
+  grid-column: 5 / 6;
+}
+
+.right {
+  grid-column: 6 / 7;
+}
+
+.bottom p {
+  margin: 0;
+}
+
+.right-text {
+  width: 100%;
+  text-align: end;
+}
+
+/* .three {
+  grid-column: 1;
+  grid-row: 2 / 5;
+}
+.four {
+  grid-column: 3;
+  grid-row: 3;
+}
+.five {
+  grid-column: 2;
+  grid-row: 4;
+}
+.six {
+  grid-column: 3;
+  grid-row: 4;
+} */
+.parent {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 0.5fr repeat(5, 1fr);
+  grid-column-gap: 1%;
+  grid-row-gap: 1%;
+  height: 98%;
+  width: 98%;
+  padding: 1%;
+
+  display: grid;
+}
+
+
+
+.first-block, .second-block {
+  /* background-color: lightgray;
+    border: 1px solid black;
+    padding: 10px; */
+}
+
+.leaflet-tile-container {
+  filter: blur(3px);
+}
+
+
+
+.slide-in {
+  transition: all 1.5s ease-in;
+}
+
+#time-slide {
+  position: absolute;
+  width: 99vw;
+  color: #c1c1c1;
+  mix-blend-mode: hue;
+  z-index: 100000;
+}
+
+#draggable {
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  width: fit-content;
+  /* background: blue; */
+  position: absolute;
+  padding-right: 1%;
+  padding-left: 1%;
+
+}
+
+#draggable:hover {
+  color: rgb(206, 206, 206);
+  cursor: col-resize;
+}
+
+.top-time {
+  font-size: 5rem;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  line-height: 100%;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+
+
+}
+
+#change {
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 5vw;
+  line-height: 90%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#no-time {
+  position: absolute;
+  color: black;
+}
+
+#time::selection {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: 'antique';
+  src: url('./font/AntiqueLegacy-Medium.otf');
+}
+
+@font-face {
+  font-family: 'antique-thin';
+  src: url('./font/Antique-Legacy-Thin.otf');
+}

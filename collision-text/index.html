@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet-src.js" crossorigin=""></script>
+    <!-- <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet-src.js" crossorigin=""></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet-src.js" crossorigin=""></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet.tilelayer.fallback@1.0.4/dist/leaflet.tilelayer.fallback.js"></script>
     <script src="turf.min.js" crossorigin=""></script>
 
     <link rel="stylesheet" href="./slider.css">
@@ -13,13 +17,67 @@
 </head>
 
 <body>
-    <div id="container">
-        <div id="parent">
-            <div id="draggable">
-                <p class="" id="time">19:15</p>
+    <div id="container" class="parent">
+        <div id="time-slide" class="one">
+            <div id="draggable" class="">
+                <!-- <p class="top-time" id="no-time" >18:15</p> -->
+                <p class="top-time" id="time">19:15</p>
             </div>
         </div>
+        <div class="two intro">
+            <p id="change" class=""> “il y a des petits bateaux qui flottent sur l’eau ”</p>
+            
+        </div>
+        <div class="third bottom-inside intro">
+            <div class="fourth hide">
+                <p  class="no-margin center-txt">durant une heure, le temps d’une exposition éphèmère,les visiteur·euse·s sont amenés à s’enregistrer par
+                    un commentaire, et partager leurs localisation sur un site internet.</p>
+            </div>
+            <p class="no-margin center-txt">Message envoyé depuis un téléphone </p>
+         
+        </div>
+        
+        <div class="bottom bottom-inside">
+            <p>28-10-2022</p>
+        </div>
+        <div class="bottom bottom-inside">
+            <a  target="_blank" class="t-link" href="https://www.google.ch/maps/@46.5197763,6.6442842,62a,35y,311h,54.54t/data=!3m1!1e3"><p>Lausanne 1004</p></a> 
+        </div>
+        <div class="bottom bottom-inside right">
+            <a  target="_blank" class="t-link right-text" href="https://www.instagram.com/dixhuitquinze/"><p>About</p></a> 
+        </div>
+        <div class="full-grid hide-o" id="map"></div>
+        <!-- <button id="toggle-tile-layer" class="onMap">Toggle Tile Layer</button>
+        <div id="parent" class="one">
+            
+            <div id="draggable" >
+                <p class="top-time" id="no-time" >18:15</p>
+                <p class="top-time" id="time">19:15</p>
+          
+            </div>
+        </div>
+        <div class="about-container">
+            <div class="row">
+              <div class="col-6 first-block">
+                <p>Dans un parc,
+                    durant une heure,
+                    le temps d’une exposition éphèmère,
+                    les visiteur·euse·s sont amenés à s’enregistrer par un
+                    commentaire, et partager leurs localisation sur un site
+                    internet.
+                    Chaque seconde, les participants qui déambulent sont
+                    de nouveau scannés et retranscrits par un pin sur une
+                    carte.
+                    Après 19h15 plus de nouvelle connexion n’est acceptée.</p>
+              </div>
+              <div class="col-6 second-block">
+              
+               
+              </div>
+            </div>
+          </div>
         <div id="map"></div>
+        <p id="footer-title">the floor is lava</p> -->
     </div>
 </body>
 <style>
@@ -29,10 +87,38 @@
         margin: 0;
     }
 
+    .hidden {
+        color: green;
+    }
+
     #map {
-        width: 100%;
+    width: 98%;
+    background:none;
+    height: 95%;
+    position: absolute;
+    }
+    .leaflet-tooltip-left:before {
+    right: 0;
+    margin-right: 0;
+    display: none;
+    border-left-color: #fff;
+}
+.leaflet-tooltip-right:before {
+    right: 0;
+    margin-right: 0;
+    display: none;
+    border-left-color: #fff;
+}
+    #toggle-tile-layer {
+        z-index: 100000;
+        position: absolute;
+        bottom: 1%;
+        border: none;
         background: none;
-        height: 100%;
+    }
+
+    .onMap {
+        background: red !important;
     }
 
     .myTooltip {
@@ -48,10 +134,11 @@
         line-height: 15px;
         text-transform: lowercase;
         padding: 0;
-        pointer-events: auto;
-        cursor: pointer;
-    }
+        pointer-events: initial;
 
+        cursor: pointer;
+
+    }
 
     .myTooltip:hover {
         color: red;
@@ -61,6 +148,7 @@
 <script src="./script/slider.js"></script>
 <script src="./script/function.js"></script>
 <script src="./script/script.js"></script>
+<script src="./script/interaction.js"></script>
 <script src="./script/json.js"></script>
 
 </html>

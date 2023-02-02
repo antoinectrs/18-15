@@ -108,7 +108,6 @@ body {
     /* font-weight: 100; */
     letter-spacing: -1px;
 }
-
 img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-interactive {
     /* filter: drop-shadow(10px 0px 6px rgba(60, 60, 60, 0.01)); */
     filter: invert(1);
